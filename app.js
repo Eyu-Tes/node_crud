@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
+const exphbs = require('express-handlebars')
 
 const connectDB = require('./config/db')
 
@@ -16,6 +17,10 @@ const app = express()
 
 // use HTTP request logger middleware if server is running in development mode
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
+
+// register handlebars view engine (with .hbs extension instead of '.handlebars')
+app.engine('.hbs', exphbs({extname: '.hbs'}))
+app.set('view engine', '.hbs')
 
 app.get('/', (req, res) => res.redirect('/products'))
 
