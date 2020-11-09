@@ -1,10 +1,11 @@
 const express = require('express')
 
+const {getProducts} = require('../controllers/products')
+
 // initialize a router
 const router = express.Router()
 
-// @desc     show all products
 // @route    GET /products
-router.get('/', (req, res) => res.send('<h1>NodeJS Crud</h1>'))
+router.get('/', getProducts)
 
 module.exports = router
