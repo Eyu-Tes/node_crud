@@ -1,10 +1,17 @@
 const express = require('express')
 const dotenv = require('dotenv')
 
-const app = express()
+const connectDB = require('./config/db')
 
-// load global varialbes into environment variables
+/* ===== This needs to loaded before other configurations ===== */
+// load global varialbes into environment variables (so we could access them through process.env)
 dotenv.config({path: './config/config.env'})
+
+// load DB connection
+connectDB()
+
+// initialize app
+const app = express()
 
 const PORT = process.env.PORT || 5000
 
