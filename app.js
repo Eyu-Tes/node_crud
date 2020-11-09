@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require('express')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
@@ -26,6 +27,9 @@ app.get('/', (req, res) => res.redirect('/products'))
 
 // load router
 app.use('/products', require('./routes/products'))
+
+// set static folder (css, js, img ...)
+app.use(express.static(path.join(__dirname, 'public')))
 
 const PORT = process.env.PORT || 5000
 
