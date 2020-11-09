@@ -17,7 +17,10 @@ const app = express()
 // use HTTP request logger middleware if server is running in development mode
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
 
-app.get('/', (req, res) => res.send('Hello world'))
+app.get('/', (req, res) => res.redirect('/products'))
+
+// load router
+app.use('/products', require('./routes/products'))
 
 const PORT = process.env.PORT || 5000
 
