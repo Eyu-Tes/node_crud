@@ -16,13 +16,15 @@ module.exports.showAddProduct = (req, res) => {
 // @desc    process add product form
 module.exports.addProduct = async (req, res) => {
     try {
-        console.log(req.body)
-        await Product.create({...req.body})
+        const newProduct = new Product({...req.body})
+        let error = newProduct.validateSync()
+        if(error) throw(error)
+        await newProduct.save()
         res.redirect('/')
-    } catch (err) {
-        console.log(err) 
+    } catch (error) {
         res.render('products/add', {
-            ...req.body
+            ...req.body, 
+            error
         })
     }
 }
