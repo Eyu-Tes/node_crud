@@ -53,3 +53,12 @@ a, input, button, select {
 .table td {
     padding: .5rem !important;
 }
+
+.form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-control {
+    border-radius: 0;
+}

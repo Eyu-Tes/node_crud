@@ -19,9 +19,21 @@ const app = express()
 // use HTTP request logger middleware if server is running in development mode
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
 
+// handlebars helpers
+const {setChecked} = require('./routes/helpers/hbs')
+
 // register handlebars view engine (with .hbs extension instead of '.handlebars')
-app.engine('.hbs', exphbs({extname: '.hbs'}))
+app.engine('.hbs', exphbs({
+    helpers: {setChecked},
+    extname: '.hbs'})
+)
 app.set('view engine', '.hbs')
+
+// body parser middleware
+// get request body form a form
+app.use(express.urlencoded({extended: false}))
+// get request body from a json (eg. from Postman)
+app.use(express.json())
 
 app.get('/', (req, res) => res.redirect('/products'))
 
