@@ -20,7 +20,7 @@ const app = express()
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
 
 // handlebars helpers
-const {setChecked} = require('./routes/helpers/hbs')
+const {setChecked, formatDate} = require('./routes/helpers/hbs')
 
 // register handlebars view engine (with .hbs extension instead of '.handlebars')
 app.engine('.hbs', exphbs({
@@ -28,6 +28,9 @@ app.engine('.hbs', exphbs({
     extname: '.hbs'})
 )
 app.set('view engine', '.hbs')
+
+const hbs = exphbs.create({});
+hbs.handlebars.registerHelper ("formatDate", formatDate)
 
 // body parser middleware
 // get request body form a form

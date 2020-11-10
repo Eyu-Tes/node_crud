@@ -14,7 +14,7 @@
         <th>Price</th>
         <th>Quantity</th>
         <th>Date Added</th>
-        <th class="nosort">Actions</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -27,7 +27,7 @@
             <td>{{category}}</td>
             <td>{{price}}</td>
             <td>{{quantity}}</td>
-            <td>{{dateAdded}}</td>
+            <td>{{formatDate dateAdded 'MMM D, YYYY'}}</td>
             <td>
                 <a href="/products/edit/{{id}}" class="btn btn-warning btn-sm mb-1">
                     <i class="fas fa-pencil-alt"></i>
