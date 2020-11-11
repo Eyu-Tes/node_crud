@@ -1,5 +1,5 @@
-<form action="/products/add" method="POST" novalidate class="form">
-    <h3 class="mb-5">Create New Product</h3>
+<form action="/products/edit/{{_id}}" method="POST" novalidate class="form">
+    <h3 class="mb-5">Update Product</h3>
     <div class="form-group">
         <label for="code">Product Code</label>
         <input type="text" name="productCode" id="productCode" value="{{productCode}}" class="form-control">
@@ -34,5 +34,5 @@
             </div>
         </div>
     </div>
-    <input type="submit" value="Create" class="btn btn-block btn-primary mt-4">
+    <input type="submit" value="Update" class="btn btn-block btn-warning mt-4">
 </form>
