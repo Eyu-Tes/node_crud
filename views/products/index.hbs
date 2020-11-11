@@ -21,7 +21,7 @@
         {{#each products}}
         <tr>
             {{!-- refernce current loop index --}}
-            <td>{{@index}}</td>
+            <td>{{inc @index}}</td>
             <td>{{productCode}}</td>
             <td>{{name}}</td>
             <td>{{category}}</td>
@@ -32,7 +32,7 @@
                 <a href="/products/edit/{{_id}}" class="btn btn-warning btn-sm mb-1">
                     <i class="fas fa-pencil-alt"></i>
                 </a>
-                <a href="#" class="btn btn-danger btn-sm mb-1">
+                <a href="/products/remove/{{_id}}" class="btn btn-danger btn-sm mb-1">
                     <i class="fas fa-trash"></i>
                 </a>
             </td>

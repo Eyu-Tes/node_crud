@@ -39,6 +39,7 @@ module.exports.showEditProduct = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
+        res.render('error/404')
     }
 }
 
@@ -49,7 +50,7 @@ module.exports.editProduct = async (req, res) => {
         const updatedProduct = await Product.findOneAndUpdate({_id: id}, req.body, {
             // return the modified document rather than the original
             new: true,
-            // runs update validators 
+            // runs validators 
             runValidators: true,
             // prevents the error: Cannot read property 'ownerDocument' of null
             // lets you set the value of 'this' in update validators to the underlying query.
@@ -61,8 +62,32 @@ module.exports.editProduct = async (req, res) => {
     } catch (error) {
         res.render('products/edit', {
             ...req.body, 
-            error, 
-            _id: id
+            // _id must be passed since req.body will not contain it
+            _id: id, 
+            error
         })
+    }
+}
+
+// @desc    show remove product confirmation form
+module.exports.showRemoveProduct = async (req, res) => {
+    try {
+        const product = await Product.findOne({_id: req.params.id}).lean()
+        res.render('products/remove', {
+            ...product
+        })
+    } catch (error) {
+        console.log(error)
+        res.render('error/404')
+    }
+}
+
+// @desc    process remove product form
+module.exports.removeProduct = async (req, res) => {
+    try {
+        await Product.deleteOne({_id: req.params.id})
+        res.redirect('/')
+    } catch (error) {
+        console.log(error)
     }
 }
