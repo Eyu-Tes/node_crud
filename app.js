@@ -20,7 +20,7 @@ const app = express()
 process.env.NODE_ENV === 'development' && app.use(morgan('dev'))
 
 // handlebars helpers
-const {setChecked, formatDate} = require('./routes/helpers/hbs')
+const {setChecked, formatDate} = require('./controllers/helpers/hbs')
 const { parse } = require('path')
 
 // register handlebars view engine (with .hbs extension instead of '.handlebars')
